@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :photos, only: [:new, :create]
+  resource :session, only: [:new, :create]
 
   root "photos#new"
 
