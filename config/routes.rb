@@ -5,6 +5,12 @@ Rails.application.routes.draw do
     resource :answer, only: [:show]
   end
 
+  namespace :admins do
+    resource :session, only: [:new, :create]
+    resources :photos, only: [:index]
+    root to: "photos#index"
+  end
+
   root "photos#new"
 
   get "up" => "rails/health#show", as: :rails_health_check
