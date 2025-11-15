@@ -108,3 +108,36 @@ Uses Kamal for deployment. Configuration in:
 - `.kamal/`: Kamal deployment configs
 - `config/deploy.yml`: Main deployment configuration
 - `Dockerfile`: Docker container definition
+
+## Rails設計プラクティス
+
+このプロジェクトでは以下のRails設計原則に従います：
+
+### RESTful設計
+- 基本的にREST 7アクション（index, show, new, create, edit, update, destroy）のみを使用
+- カスタムアクションは最小限に抑える
+- リソース指向のURL設計を重視
+
+### コントローラーの責務分離
+- 認証機能は専用のSessionsControllerで管理
+- 各コントローラーは単一の責務を持つ
+- before_actionで共通処理を整理
+
+### ネストしたリソース設計
+- 親子関係のあるリソースは適切にネスト
+- 単一子リソース（singular resource）の活用
+  - 例: `resources :quizzes do resource :answer end`
+  - URL: `/quizzes/:quiz_id/answer`（複数形ではなく単数形）
+  - 1つのクイズに対して答えは1つなので単数形リソースを使用
+
+### ルーティング設計
+- `only`オプションで必要なアクションのみ公開
+- リソース間の関係を明確に表現
+- Rails wayに従ったRESTfulなURL構造
+
+### 実装の進め方
+- 機能ごとに段階的に実装する（モデル→コントローラー→ビューの順ではない）
+- 各フェーズで完結した機能を作り、動作確認してから次へ進む
+- 例：「写真アップロード機能」を完成させてから「パスワード認証機能」に進む
+- 各フェーズの終わりには必ず動作確認を行い、期待通りに動くことを確認する
+- 実装計画は詳細に具体化し、PLAN.mdなどのドキュメントとして残す
