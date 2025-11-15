@@ -1,0 +1,23 @@
+<div class="min-h-screen bg-gradient-to-br from-purple-900 to-indigo-900 flex flex-col items-center justify-center px-4 py-8">
+  <div class="max-w-6xl w-full">
+    <h1 class="text-5xl md:text-7xl font-bold text-center mb-12 text-white drop-shadow-2xl animate-pulse">
+      この人は誰でしょう？🤔
+    </h1>
+
+    <div class="card bg-base-100 shadow-2xl mb-12">
+      <figure class="p-4 md:p-8">
+        <%= image_tag @photo.image, class: "rounded-2xl shadow-2xl max-h-[60vh] w-auto mx-auto object-contain" %>
+      </figure>
+    </div>
+
+    <div class="flex justify-center">
+      <%= link_to quiz_answer_path(@photo), class: "btn btn-warning btn-lg text-2xl md:text-3xl py-6 px-12 shadow-2xl hover:scale-110 transition-transform duration-200", data: { turbo: false } do %>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+        </svg>
+        答えを見る
+      <% end %>
+    </div>
+  </div>
+</div>

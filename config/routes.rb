@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :photos, only: [:new, :create]
   resource :session, only: [:new, :create]
+  resources :quizzes, only: [:index, :show] do
+    resource :answer, only: [:show]
+  end
 
   root "photos#new"
 
