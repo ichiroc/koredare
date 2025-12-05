@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create]
   resources :quizzes, only: [:index, :show] do
     resource :answer, only: [:show]
+    collection do
+      get :complete
+    end
   end
+  resource :quiz_reset, only: [:create]
 
   namespace :admins do
     resource :session, only: [:new, :create]
